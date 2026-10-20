@@ -1,105 +1,133 @@
-# Infosys Springboard Internship 7.0
+# Authentication Portal – Infosys Springboard Milestone 1
 
-## Batch 4 — Milestone 1: User Authentication Module
+## Project Overview
 
-### 1. Project Overview
+The **Authentication Portal** is a secure, web-based user authentication application developed as part of the **Infosys Springboard Internship 7.0 – Batch 4, Milestone 1**.
 
-Milestone 1 focuses on developing a user authentication module using Streamlit, JWT, ngrok, Gmail OTP, and Google Colab. The application provides user registration, login, password recovery, session management, and an admin dashboard.
+The application provides user registration, login, password recovery, and an administrator dashboard. It incorporates password validation, secure password hashing, JSON Web Token (JWT) authentication, and email-based OTP verification to support secure access and account management.
 
-### 2. Features
+## Objectives
 
-- **Login Page:** Authenticate users with their username/email and password.
-- **Signup Page:** Register new users with a unique username, email, password, confirmation password, security question, and security answer.
-- **Forgot Password:** Recover accounts using either a security question or an email OTP.
-- **JWT Session Management:** Generate and validate JWT tokens after successful login.
-- **Input Validation:** Validate mandatory fields, email format, password strength, and password confirmation.
-- **User Dashboard:** Display a welcome message with the logged-in user's username/email and provide a logout option.
-- **Admin Dashboard:** Provide a separate admin login and display registered usernames and email addresses without exposing passwords.
-- **Email OTP Verification:** Send a one-time password to the registered email address for account recovery.
+- Develop a user-friendly authentication system.
+- Implement secure user registration and login.
+- Provide password recovery through security questions and email OTP verification.
+- Protect authenticated sessions using JWT.
+- Provide an administrator interface to view registered users.
+- Validate user inputs and enforce password security requirements.
 
-### 3. Technology Stack
+## Key Features
 
-- **Programming Language:** Python
-- **Frontend and Application Framework:** Streamlit
-- **Authentication and Session Management:** JSON Web Token (JWT)
-- **Development Environment:** Google Colab
-- **Public Access:** ngrok
-- **Email Verification:** Gmail SMTP and Gmail App Password
-- **Secret Management:** Google Colab Secrets
+### 1. User Registration
+- Register using a username, email address, and password.
+- Confirm passwords before registration.
+- Configure a security question and answer.
+- Validate email format and password strength.
 
-### 4. Application Pages
+### 2. User Login
+- Authenticate users using their registered credentials.
+- Verify passwords securely.
+- Generate and validate JWTs for authenticated access.
+- Provide access to the user dashboard after successful authentication.
 
-1. Login Page
-2. Signup Page
-3. Forgot Password Page
-4. User Dashboard
-5. Admin Dashboard
+### 3. Password Recovery
+- Reset passwords using a registered security question and answer.
+- Reset passwords using an email-based OTP.
+- Validate OTPs and enforce an expiration period.
+- Return users to the login page after a successful password reset.
 
-### 5. Validation Requirements
+### 4. User Dashboard
+- Display a welcome message after successful authentication.
+- Provide a logout option.
 
-- All mandatory fields must be completed before submission.
-- Email addresses must follow the specified email format rule.
-- Passwords must contain at least eight characters, one uppercase letter, one lowercase letter, one number, and one special symbol.
-- Confirm Password must exactly match Password.
-- Duplicate usernames must be rejected during signup.
-- Login failures must display a generic error message.
+### 5. Admin Dashboard
+- Provide a separate administrator login.
+- Display registered usernames and email addresses.
+- Keep user passwords hidden from the administrator dashboard.
+- Provide an administrator logout option.
 
-### 6. Password Recovery
+## Technology Stack
 
-The application supports two password recovery methods:
+| Component | Technology |
+|---|---|
+| Programming Language | Python |
+| Web Application Framework | Streamlit |
+| Database | SQLite |
+| Authentication | JSON Web Tokens (JWT) |
+| Password Security | PBKDF2 password hashing |
+| Email Verification | SMTP with Gmail |
+| Public Access | ngrok |
+| Development Environment | Google Colab |
+| Version Control | Git and GitHub |
 
-**Security Question Method**
+## Application Screenshots
 
-- Enter the registered username.
-- Answer the security question selected during signup.
-- Set a new password that satisfies the password rules.
+### Admin Dashboard
+Displays registered usernames and email addresses.
 
-**Email OTP Method**
+![Admin Dashboard](screenshots/admin%20login.png.png)
 
-- Enter the registered email address.
-- Receive a one-time password by email.
-- Verify the OTP and set a new password.
+### User Registration
+Provides the registration form and security-question setup.
 
-After a successful password reset, the user is redirected to the Login page.
+![Signup Page](screenshots/signup.png.png)
 
-### 7. How to Run the Application
+### Password Recovery
+Supports account recovery and password reset.
+
+![Password Recovery](screenshots/resetpassword.png.png)
+
+### User Dashboard
+Displays the authenticated user's dashboard.
+
+![User Dashboard](screenshots/userdashboard.png.png)
+
+## Security Measures
+
+- Passwords are stored as hashes rather than plain text.
+- Password validation enforces minimum length and character requirements.
+- JWTs are validated before protected dashboard access.
+- Email OTPs have a limited validity period and verification attempts.
+- Sensitive configuration values are managed using environment variables and Google Colab Secrets.
+- Administrator access is separated from regular user access.
+
+## Project Structure
+
+```text
+Milestone1/
+├── app.py
+├── users.db
+├── README.md
+├── Milestone1_Authentication.ipynb
+└── screenshots/
+    ├── admin login.png.png
+    ├── resetpassword.png.png
+    ├── signup.png.png
+    └── userdashboard.png.png
+```
+
+*Note: The project structure above represents the expected organization. Include only files and folders that actually exist in your repository. Do not commit credentials or sensitive database information.*
+
+## Running the Application
+
+The application was developed and tested in Google Colab.
 
 1. Open the project notebook in Google Colab.
-2. Configure the required credentials in Colab Secrets.
-3. Run the notebook cells in order to install dependencies and configure the application.
-4. Start the Streamlit application and establish the ngrok tunnel.
-5. Open the generated public URL in a browser.
-6. Test signup, login, password recovery, the user dashboard, and the admin dashboard.
+2. Configure the required secrets, including JWT, ngrok, email, and administrator credentials.
+3. Install the required Python dependencies.
+4. Start the Streamlit application.
+5. Open the generated ngrok URL to access the Authentication Portal.
+6. Test registration, login, password recovery, and administrator access.
 
-### 8. Screenshots
+**Important:** Never publish API tokens, Gmail App Passwords, administrator passwords, or other secret values in the notebook or repository.
 
-Screenshots demonstrating the application will be added after implementation and testing.
+## Conclusion
 
-- Login Page
-- Signup Page
-- Forgot Password — Security Question
-- Forgot Password — OTP
-- OTP Email
-- User Dashboard
-- Admin Dashboard
+The Authentication Portal demonstrates the implementation of essential authentication and account-management features using Python and Streamlit. It combines user registration, secure login, password recovery, JWT-based access control, and administrator functionality in a single application.
 
-Screenshots will be stored in the `screenshots/` folder.
+This project strengthened practical knowledge of web application development, database integration, authentication, password security, email verification, and version control.
 
-### 9. Security Considerations
+---
 
-- Store JWT secrets, ngrok authentication tokens, email credentials, and other sensitive values in Google Colab Secrets.
-- Do not hard-code personal credentials or secrets in the notebook.
-- Never display or expose user passwords in the admin dashboard.
-- Clear notebook outputs before uploading the notebook to GitHub.
-- Verify that no personal credentials, tokens, OTPs, or admin passwords remain in the submitted notebook.
-
-### 10. Project Deliverables
-
-- `README.md` — Project documentation and instructions.
-- Jupyter notebook (`.ipynb`) — Application implementation.
-- `screenshots/` — Screenshots of the tested application pages.
-
-### 11. Conclusion
-
-This milestone demonstrates the implementation of a user authentication module with registration, login, secure session handling, password recovery, email OTP verification, and administrative user management using Python-based tools.
+**Project:** Infosys Springboard Internship 7.0 – Batch 4, Milestone 1  
+**Repository:** [infosys-maritime-ai](https://github.com/pranathi1234-ye/infosys-maritime-ai)
 
